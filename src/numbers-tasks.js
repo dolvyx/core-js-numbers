@@ -118,8 +118,10 @@ function getLinearEquationRoot(a, b) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  return Math.acos(
+    (x1 * x2 + y1 * y2) / (Math.hypot(x1, y1) * Math.hypot(x2, y2))
+  );
 }
 
 /**
@@ -395,8 +397,8 @@ function toExponential(number, fractionDigits) {
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toFixed(number, fractionDigits) {
+  return number.toFixed(fractionDigits);
 }
 
 /**
@@ -411,8 +413,8 @@ function toFixed(/* number, fractionDigits */) {
  * 12345, 7    => '12345.00'
  * 12.345, 4   => '12.35'
  */
-function toPrecision(/* number, precision */) {
-  throw new Error('Not implemented');
+function toPrecision(number, precision) {
+  return number.toPrecision(precision);
 }
 
 /**
@@ -473,18 +475,8 @@ function isInteger(number) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  // let result = '';
-  // for (let i = 0; i < str.length; i += 1) {
-  //   if ((str[i] >= '0' && str[i] <= '9') || str[i] === '.') {
-  //     result += str[i];
-  //   }
-  // }
-  // if (result === '') {
-  //   return NaN;
-  // }
-  // return Number(result);
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
 }
 
 /**
@@ -501,8 +493,9 @@ function getFloatOnString(/* str */) {
  * '1.234', 2           => 1
  * '10', 8              => 8
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(str, base) {
+  const parsed = Number.parseInt(str, base);
+  return Number.isNaN(parsed) ? NaN : parsed;
 }
 
 /**
@@ -516,8 +509,8 @@ function getIntegerOnString(/* str, base */) {
  * 3.5      => false
  * 2 ** 53  => false
  */
-function isSafeInteger(/* number */) {
-  throw new Error('Not implemented');
+function isSafeInteger(number) {
+  return Number.isSafeInteger(number);
 }
 
 /**
